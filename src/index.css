@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+.black-grad {
+    background-image: linear-gradient(to bottom, #111111, black, #111111);
+}
+
+.purple-grad {
+    background-image: linear-gradient(to right bottom, #9b23ea, #870ada, #9b23ea);
+}
+
+.story {
+    white-space: pre-line;
+}
