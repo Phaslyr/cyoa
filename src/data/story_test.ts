@@ -1,10 +1,23 @@
-export const texts = [
-"Would you rather have unlimited bacon but no games or games unlimited games but no games",
+// Potential file naming structure: story_[storyName].ts
 
-"Bacon is shit but okay",
+import { StoryNode } from "../structs/StoryGraph"
 
-"Congrats you just played yourself",
+const a = new StoryNode("Would you rather have unlimited bacon but no games or games unlimited games but no games")
+const b = new StoryNode("Bacon is shit but okay")
+const c = new StoryNode("Congrats you just played yourself")
 
+a.link("unlimited bacon but no games", b)
+a.link("games unlimited games but no games", c)
+
+b.link("go home", a)
+b.link("or go home", a)
+b.link("or go home", a)
+c.link("go home", a)
+c.link("or go home", a)
+c.link("or go home", a)
+c.link("or go home", a)
+
+const sampleText = new StoryNode(
 `Mr and Mrs Dursley, of number four, Privet Drive, were proud to say that they were perfectly normal, thank you very much. They were the last people you'd expect to be involved in anything strange or mysterious, because they just didn't hold with such nonsense.
 
 Mr Dursley was the director of a firm called Grunnings, which made drills. He was a big, beefy man with hardly any neck, although he did have a very large moustache. Mrs Dursley was thin and blonde and had nearly twice the usual amount of neck, which came in very useful as she spent so much of her time craning over garden fences, spying on the neighbours. The Dursleys had a small son called Dudley and in their opinion there was no finer boy anywhere.
@@ -15,15 +28,9 @@ When Mr and Mrs Dursley woke up on the dull, grey Tuesday our story starts, ther
 
 None of them noticed a large tawny owl flutter past the window.
 
-At half past eight, Mr Dursley picked up his briefcase, pecked Mrs Dursley on the cheek and tried to kiss Dudley goodbye but missed, because Dudley was now having a tantrum and throwing his cereal at the walls. 'Little tyke,' chortled Mr Dursley as he left the house. He got into his car and backed out of number four's drive.`,
+At half past eight, Mr Dursley picked up his briefcase, pecked Mrs Dursley on the cheek and tried to kiss Dudley goodbye but missed, because Dudley was now having a tantrum and throwing his cereal at the walls. 'Little tyke,' chortled Mr Dursley as he left the house. He got into his car and backed out of number four's drive.`
+)
 
-"You chose the first button!",
+const Story = sampleText
 
-"You chose the second button!",
-]
-
-export const branches = [
-  [{ state: 1, text: "unlimited bacon but no games"}, { state: 2, text: "games unlimited games but no games"}],
-  [{ state: 0, text: "go home"}, { state: 0, text: "or go home"}, { state: 0, text: "or go home" }],
-  [{ state: 0, text: "go home"}, { state: 0, text: "or go home"}, { state: 0, text: "or go home" }, { state: 0, text: "or go home" }],
-]
+export default Story

@@ -1,18 +1,42 @@
-export type StoryNode = { 
-  state: StoryState, 
-  text: string, 
-  branches: { state: StoryState, text: string }[], 
-}
-
-export type StoryState = number
 export type BranchState = 0 | 1 | 2 | 3
 
-class StoryGraph {
-  constructor(head: StoryNode) {
-    const root = head
+export class StoryNode {
+  text: string
+  branches: { label: string, node: StoryNode, }[]
+
+  constructor(storyText?: string,) {
+    if (storyText !== undefined) {
+      this.text = storyText
+    } else {
+      this.text = ""
+    }
+    this.branches = []
   }
 
-  link(head: StoryNode, tail: StoryNode, choiceText: string) {
-    head.branches.push({ state: tail.state, text: choiceText })
+  write(storyText: string) {
+    this.text = storyText
+  }
+
+  link(labelText: string, nextNode: StoryNode) {
+    if (this.branches.length + 1 >= 5) {
+      throw new Error("Branches cannot exceed four")
+    }
+    this.branches.push({ label: labelText, node: nextNode})
+  }
+
+  progress(nextBranch: BranchState) {
+    if (nextBranch >= this.branches.length ) {
+      throw new Error(`Index ${nextBranch} out of bounds`)
+    } else {
+      return this.branches[nextBranch].node
+    }
+  }
+}
+
+export class StoryGraph {
+  root: StoryNode
+
+  constructor(head: StoryNode) {
+    this.root = head
   }
 }

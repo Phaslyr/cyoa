@@ -6,8 +6,8 @@ import type { BranchState } from "./structs/StoryGraph"
 function App() {
   const [story, dispatch] = useReducer(updateStoryReducer, initializeStory())
 
-  const makeChoice = (nextPoint: BranchState) => {
-    dispatch(nextPoint)
+  const makeChoice = (nextBranch: BranchState) => {
+    dispatch(nextBranch)
   }
 
   return (
