@@ -22,7 +22,8 @@ At half past eight, Mr Dursley picked up his briefcase, pecked Mrs Dursley on th
 "You chose the second button!",
 ]
 
-export const branches: [string, string][] = [
-  ["unlimited bacon but no games", "games unlimited games but no games"],
-  ["go home", "or go home"],
+export const branches = [
+  [{ state: 1, text: "unlimited bacon but no games"}, { state: 2, text: "games unlimited games but no games"}],
+  [{ state: 0, text: "go home"}, { state: 0, text: "or go home"}, { state: 0, text: "or go home" }],
+  [{ state: 0, text: "go home"}, { state: 0, text: "or go home"}, { state: 0, text: "or go home" }, { state: 0, text: "or go home" }],
 ]

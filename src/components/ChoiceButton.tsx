@@ -1,4 +1,4 @@
-import type { BranchState, StoryState} from "../logic/dungeonMaster"
+import type { BranchState } from "../structs/StoryGraph"
 
 type Color = 'red' | 'orange' | 'yellow' | 'green' | 'blue' | 'purple'
 
@@ -11,11 +11,11 @@ const coloring = {
     'purple': ["bg-purple-600", "hover:bg-purple-700"],
 }
 
-function ChoiceButton(props: { text: string, color: Color, state: number, branch: BranchState, dispatch: (currentPoint: StoryState, nextPoint: BranchState) => void }) {
+function ChoiceButton(props: { text: string, color: Color, branch: BranchState, dispatch: (nextPoint: BranchState) => void }) {
   return (
     <button 
       className={`p-4 h-full w-100 rounded-2xl! ${coloring[props.color][0]} ${coloring[props.color][1]} shadow-[0_0_5px_1px]/25 hover:inset-shadow-[0_0_15px_3px]/40 active:inset-shadow-[0_0_20px_4px]/60 shadow-black active:inset-shadow-black flex items-center justify-content-center`} 
-      onClick={() => { props.dispatch(props.state, props.branch) }} >
+      onClick={() => { props.dispatch(props.branch) }} >
       <span className="text-white text-xl m-0">
         { props.text }
       </span>
