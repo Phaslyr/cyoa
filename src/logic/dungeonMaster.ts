@@ -1,19 +1,24 @@
-import { stories, choices } from "./storyTexts"
+import { texts, branches } from "./storyTexts"
 
 // Functions
 
 export function initializeStory() {
-  return { text: stories[0], choices: choices[0] }
+  return { state: 0, text: texts[0], branches: branches[0] }
 }
-
-export function updateStory(path: SelectionState) {
-  if (path === 0) {
-    return { text: stories[1], choices: choices[0] }
+``
+export function updateStory(currentPoint: StoryState, nextPoint: BranchState) {
+  if (currentPoint === 0) {
+    if (nextPoint === 0) {
+      return { state: 1, text: texts[1], branches: branches[1] }
+    } else {
+      return { state: 2, text: texts[2], branches: branches[1] }
+    }
   } else {
-    return { text: stories[2], choices: choices[0] }
+    return initializeStory()
   }
 }
 
 // Story Tracker
 
-export type SelectionState = 0 | 1
+export type StoryState = number
+export type BranchState = 0 | 1
