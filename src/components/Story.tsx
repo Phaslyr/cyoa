@@ -1,51 +1,39 @@
 import ChoiceButton from "./ChoiceButton"
-import type { BranchState, StoryNode } from "../structs/StoryGraph"
+import type { StoryNode } from "../models/StoryGraph"
+import type { Color } from "./ChoiceButton"
 
-function Story({ story, dispatch }: { story: StoryNode, dispatch: (nextPoint: BranchState) => void }) {
-  let choiceRow = <div className="pb-4"></div>;
+type Layout = { columns: string, padding: string[], colors: Color[] }
 
-  if (story.branches.length === 2) {
-    choiceRow = <div className="row py-3">
-      <div className="col-6">
-        <ChoiceButton text={story.branches[0].label} color={'green'} branch={0} dispatch={dispatch} />
-      </div>
-      <div className="col-6">
-        <ChoiceButton text={story.branches[1].label} color={'red'} branch={1} dispatch={dispatch} />
-      </div>
-    </div>
-  } else if (story.branches.length === 3) {
-    choiceRow = <div className="row py-3">
-      <div className="col-md-4 col-12">
-        <ChoiceButton text={story.branches[0].label} color={'green'} branch={0} dispatch={dispatch} />
-      </div>
-      <div className="col-md-4 col-12 max-md:pt-4">
-        <ChoiceButton text={story.branches[1].label} color={'yellow'} branch={1} dispatch={dispatch} />
-      </div>
-      <div className="col-md-4 col-12 max-md:pt-4">
-        <ChoiceButton text={story.branches[2].label} color={'red'} branch={2} dispatch={dispatch} />
-      </div>
-    </div>
-  } else if (story.branches.length === 4) {
-    choiceRow = <div className="row py-3">
-      <div className="col-6">
-        <ChoiceButton text={story.branches[0].label} color={'green'} branch={0} dispatch={dispatch} />
-      </div>
-      <div className="col-6">
-        <ChoiceButton text={story.branches[1].label} color={'red'} branch={1} dispatch={dispatch} />
-      </div>
-      <div className="col-6 pt-4">
-        <ChoiceButton text={story.branches[2].label} color={'yellow'} branch={2} dispatch={dispatch} />
-      </div>
-      <div className="col-6 pt-4">
-        <ChoiceButton text={story.branches[3].label} color={'blue'} branch={3} dispatch={dispatch} />
-      </div>
-    </div>
-  }
+// MAX_BRANCHES === 4 -> StoryGraph.ts
+const LAYOUT: Record<number, Layout | undefined> = {
+  1: { columns: "col-12",
+       padding: [""],
+       colors: ["blue"], },
+  2: { columns: "col-6",
+       padding: ["", ""],
+       colors: ["green", "red"], },
+  3: { columns: "col-12 col-md-4",
+       padding: ["", "max-md:pt-4", "max-md:pt-4"],
+       colors: ["green", "yellow", "red"], },
+  4: { columns: "col-6", 
+       padding: ["", "", "pt-4", "pt-4"],
+       colors: ["green", "red", "yellow", "blue"], },
+}
+
+function Story({ node, dispatch }: { node: StoryNode, dispatch: (nextPoint: number) => void }) {
+  const layout = LAYOUT[node.branches.length]
+
+  const choiceRow = layout ? <div className="row py-3">
+        { node.branches.map((branch, i) => (
+            <div key={i} className={`${layout.columns} ${layout.padding[i]}`}>
+              <ChoiceButton text={branch.label} color={layout.colors[i]} branch={i} dispatch={dispatch} />
+            </div> ))}
+      </div> : <div className="pb-4" />
 
   return (
-    <div className="col-12 col-md-10 h-5/6 rounded-4xl px-4 purple-grad outline-purple-700 outline-3 outline-offset-3 shadow-[0_0_30px_4px]/75 shadow-purple-700">
-      <p className="pt-8 text-white text-lg text-shadow-md/20 story">
-        { story.text }
+    <div className="col-10 h-5/6 rounded-4xl px-4 purple-grad outline-purple-700 outline-3 outline-offset-3 shadow-[0_0_30px_4px]/75 shadow-purple-700">
+      <p className="pt-8 text-white text-lg text-shadow-md/20 story-text">
+        { node.text }
       </p>
       { choiceRow }
     </div>

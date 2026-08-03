@@ -1,20 +1,16 @@
 import { useReducer } from "react"
 import Story from "./components/Story"
-import { initializeStory, updateStoryReducer } from "./logic/dungeonMaster"
-import type { BranchState } from "./structs/StoryGraph"
+import { updateStoryReducer } from "./logic/updateStoryReducer"
+import story_test from "./data/story_test"
 
 function App() {
-  const [story, dispatch] = useReducer(updateStoryReducer, initializeStory())
-
-  const makeChoice = (nextBranch: BranchState) => {
-    dispatch(nextBranch)
-  }
+  const [loadedStory, dispatch] = useReducer(updateStoryReducer, story_test)
 
   return (
     <div className="py-5">
       <div className="container flex flex-col justify-center">
         <div className="row align-content-center justify-content-center">
-          <Story story={story} dispatch={makeChoice} />
+          <Story node={loadedStory} dispatch={dispatch} />
         </div>
       </div>
     </div>

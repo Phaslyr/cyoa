@@ -1,15 +1,11 @@
-export type BranchState = 0 | 1 | 2 | 3
+export const MAX_BRANCHES = 4 // Layout designs for branches [1, 2, 3, 4] -> Story.tsx
 
 export class StoryNode {
   text: string
   branches: { label: string, node: StoryNode, }[]
 
-  constructor(storyText?: string,) {
-    if (storyText !== undefined) {
-      this.text = storyText
-    } else {
-      this.text = ""
-    }
+  constructor(storyText: string = "",) {
+    this.text = storyText
     this.branches = []
   }
 
@@ -18,14 +14,14 @@ export class StoryNode {
   }
 
   link(labelText: string, nextNode: StoryNode) {
-    if (this.branches.length + 1 >= 5) {
-      throw new Error("Branches cannot exceed four")
+    if (this.branches.length >= MAX_BRANCHES) {
+      throw new Error(`Branches cannot exceed ${MAX_BRANCHES}`)
     }
     this.branches.push({ label: labelText, node: nextNode})
   }
 
-  progress(nextBranch: BranchState) {
-    if (nextBranch >= this.branches.length ) {
+  progress(nextBranch: number) {
+    if (nextBranch >= this.branches.length || nextBranch < 0) {
       throw new Error(`Index ${nextBranch} out of bounds`)
     } else {
       return this.branches[nextBranch].node
