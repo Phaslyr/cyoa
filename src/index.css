@@ -1,5 +1,21 @@
 @import "tailwindcss";
 
+@font-face {
+    font-family: 'Tangerine';
+    src: url('C:/Users/edan1/Desktop/projects/cyoa/src/assets/fonts/Tangerine/Tangerine-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Tangerine';
+    src: url('C:/Users/edan1/Desktop/projects/cyoa/src/assets/fonts/Tangerine/Tangerine-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+/* background colors */
+
 .black-grad {
     background-image: linear-gradient(to bottom, #111111, black, #111111);
 }
@@ -8,6 +24,18 @@
     background-image: linear-gradient(to right bottom, #9b23ea, #870ada, #9b23ea);
 }
 
+/* formatting addition to correctly read stories */
+
 .story-text {
     white-space: pre-line;
+}
+
+/* fonts */
+
+.tangerine {
+    font-family: 'Tangerine', 'Georgia', 'Times New Roman', 'Times', 'serif';
+}
+
+.georgia {
+    font-family: 'Georgia', 'Times New Roman', 'Times', 'serif';
 }

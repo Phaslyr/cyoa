@@ -1,5 +1,5 @@
-import { StoryNode } from "../models/StoryGraph"
+import { type StoryTracker } from "../models/StoryGraph"
 
-export function updateStoryReducer(node: StoryNode, nextBranch: number) {
-  return node.progress(nextBranch)
+export function updateStoryReducer({ graph, node }: StoryTracker, nextBranch: number): StoryTracker {
+  return { graph: graph, node: graph.get(node.progress(nextBranch)) }
 }
