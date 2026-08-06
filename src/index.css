@@ -2,32 +2,31 @@
 
 @font-face {
     font-family: 'Tangerine';
-    src: url('C:/Users/edan1/Desktop/projects/cyoa/src/assets/fonts/Tangerine/Tangerine-Regular.ttf') format('truetype');
+    src: url('./assets/fonts/Tangerine/Tangerine-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Tangerine';
-    src: url('C:/Users/edan1/Desktop/projects/cyoa/src/assets/fonts/Tangerine/Tangerine-Bold.ttf') format('truetype');
+    src: url('./assets/fonts/Tangerine/Tangerine-Bold.ttf') format('truetype');
     font-weight: bold;
     font-style: normal;
 }
 
-/* background colors */
+/* theme */
+
+@theme {
+    --color-amethyst: #9b23ea;
+    --color-amethyst-deep: #870ada;
+}
 
 .black-grad {
     background-image: linear-gradient(to bottom, #111111, black, #111111);
 }
 
-.purple-grad {
-    background-image: linear-gradient(to right bottom, #9b23ea, #870ada, #9b23ea);
-}
-
-/* formatting addition to correctly read stories */
-
-.story-text {
-    white-space: pre-line;
+.amethyst-grad {
+    background-image: linear-gradient(to right bottom, var(--color-amethyst), var(--color-amethyst-deep), var(--color-amethyst));
 }
 
 /* fonts */
@@ -38,4 +37,10 @@
 
 .georgia {
     font-family: 'Georgia', 'Times New Roman', 'Times', 'serif';
+}
+
+/* formatting addition to correctly read stories */
+
+.story-text {
+    white-space: pre-line;
 }
