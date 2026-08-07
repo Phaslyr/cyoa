@@ -1,6 +1,6 @@
 // Important Types and Tailwind Colors
 
-export type Color = keyof typeof TW_BUTTON_COLORS
+export type Color = keyof typeof BUTTON_COLORS
 export type Theme = keyof typeof PALETTES // for later
 type Palette = {
   1?: readonly [Color]
@@ -9,7 +9,7 @@ type Palette = {
   4?: readonly [Color, Color, Color, Color]
 }
 
-export const TW_BUTTON_COLORS = {
+export const BUTTON_COLORS = {
     "med-violet": "bg-violet-500 hover:bg-violet-600",
     "dark-violet": "bg-violet-600 hover:bg-violet-800",
     "med-purple": "bg-purple-500 hover:bg-purple-600",
@@ -31,6 +31,7 @@ const PALETTES = {
     grad: "amethyst-grad",
     outline: "outline-amethyst",
     shadow: "shadow-amethyst",
+    buttonPrimary: AMETHYST[1]![0],
     buttons: AMETHYST,
   },
 }

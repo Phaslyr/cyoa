@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+/* primary theme colors */
+
+@theme {
+    --color-amethyst: #9b23ea;
+    --color-amethyst-deep: #870ada;
+}
+
+/* gradient colors */
+
+.black-grad {
+    background-image: linear-gradient(to bottom, #111111, black, #111111);
+}
+
+.amethyst-grad {
+    background-image: linear-gradient(to right bottom, var(--color-amethyst), var(--color-amethyst-deep), var(--color-amethyst));
+}
