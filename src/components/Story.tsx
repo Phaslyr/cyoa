@@ -6,13 +6,13 @@ import { DEFAULT, themeButtons } from "../theme/theme"
 
 const THEME = DEFAULT // Here to instantiate the THEME variable, which will probably end up becoming a togglable setting in Loader
 
-function Story({ storyData: { graph, node }, dispatch }: { storyData: StoryTracker, dispatch: (nextPoint: number) => void }) {
+function Story({ storyData: { graph, node }, progress }: { storyData: StoryTracker, progress: (nextPoint: number) => void }) {
   const buttonColoring = themeButtons(THEME.buttons, node.branches.length)
 
   const choiceRow = buttonColoring ? <div className="row pb-3">
         { node.branches.map((branch, i) => (
             <div key={i} className={`col-12 pt-3`}>
-              <ChoiceButton text={branch.label} color={buttonColoring[i]} branch={i} dispatch={dispatch} />
+              <ChoiceButton text={branch.label} color={buttonColoring[i]} branch={i} progress={progress} />
             </div> ))}
       </div> : <div className="pb-4" />
 

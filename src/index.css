@@ -16,6 +16,8 @@
     font-style: normal;
 }
 
+/* important display settings for correct centering */
+
 #root {
     min-height: 100dvh;
     display: flex;

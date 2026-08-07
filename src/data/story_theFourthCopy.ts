@@ -283,4 +283,4 @@ story.end(node12)
 story.end(node13)
 story.end(node14)
 
-export default { graph: story, node: story.root }
+export default story

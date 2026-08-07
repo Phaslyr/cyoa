@@ -1,7 +1,13 @@
 export const MAX_BRANCHES = 4 // Layout designs for branches [1, 2, 3, 4] -> Story.tsx
 
 type Branch = { label: string, node: number, }
-export type StoryTracker = { graph: StoryGraph, node: StoryNode }
+
+export type StoryTracker = { 
+  graph: StoryGraph, 
+  node: StoryNode,
+  loaded: boolean,
+  variables?: object,
+}
 
 export class StoryNode {
   private _id: number | undefined
@@ -53,7 +59,7 @@ export class StoryGraph {
   private _nodeMap: Map<number, StoryNode> = new Map<number, StoryNode>()
   private _nextId: number = 0
 
-  constructor(storyName: string, head: StoryNode) {
+  constructor(storyName: string = "", head: StoryNode = new StoryNode()) {
     this.title = storyName
     this.root = head
 
@@ -100,4 +106,10 @@ export class StoryGraph {
   private get nodeMap(): Map<number, StoryNode> {
     return this._nodeMap
   }
+}
+
+export function createBlankStoryTracker(_?: null): StoryTracker {
+  const g = new StoryGraph()
+  const n = g.root
+  return { graph: g, node: n, loaded: false }
 }
