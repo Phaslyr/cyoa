@@ -238,7 +238,7 @@ You do.
 
 
 
-const story = new StoryGraph(`The Fourth Copy`, node1)
+const story = new StoryGraph("The Fourth Copy", "Historical Fiction, Mystery, Romance", node1)
 
 story.link(`Go down to the Rossau before the light comes, and see the drowned man for yourself.`, node1, node2)
 story.link(`Say nothing all day, take the Duchess's second-best domino out of the press, and go to the Redoutensaal tonight as a lady, to find the Russian among the dancers.`, node1, node3)

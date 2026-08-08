@@ -3,8 +3,6 @@ import { DEFAULT, BUTTON_COLORS } from "../theme/theme"
 const THEME = DEFAULT // Here to instantiate the THEME variable, which will probably end up becoming a togglable setting in Loader
 
 function Begin({ toLoad }: { toLoad: () => void }) {
-  console.log(THEME.buttons[1]![0])
-
   return (
     <div className={`col-xl-6 col-lg-8 col-md-9 col-10 h-min-3/5 rounded-4xl px-4 ${THEME.grad} ${THEME.outline} outline-3 outline-offset-3 shadow-[0_0_50px_5px]/85 ${THEME.shadow}`}>
       <h1 className="pt-9 text-white text-center md:text-9xl! text-8xl! text-shadow-lg/30 font-bold! tangerine pre-wrap">

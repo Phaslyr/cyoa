@@ -55,21 +55,24 @@ export class StoryNode {
 
 export class StoryGraph {
   readonly title: string
+  readonly genre: string
+  private _endings: number = 0
   readonly root: StoryNode
   private _nodeMap: Map<number, StoryNode> = new Map<number, StoryNode>()
-  private _nextId: number = 0
+  private _numNodes: number = 0
 
-  constructor(storyName: string = "", head: StoryNode = new StoryNode()) {
+  constructor(storyName: string = "", storyGenres: string = "", head: StoryNode = new StoryNode()) {
     this.title = storyName
+    this.genre = storyGenres
     this.root = head
 
     this.register(this.root)
   }
 
   register(node: StoryNode) {
-    node.id = this.nextId
-    this.nodeMap.set(this.nextId, node)
-    this.nextId++
+    node.id = this.numNodes
+    this.nodeMap.set(this.numNodes, node)
+    this.numNodes++
   }
 
   link(label: string, head: StoryNode, tail: StoryNode) {
@@ -85,6 +88,7 @@ export class StoryGraph {
       throw new Error(`Root has no id. Why tf does the root have no id???`)
     }
     ending.link(`Return to start.`, this.root.id)
+    this.endings++
   }
 
   get(nextNodeId: number): StoryNode {
@@ -95,16 +99,24 @@ export class StoryGraph {
     return nextNode
   }
 
-  private get nextId(): number {
-    return this._nextId
+  public get numNodes(): number {
+    return this._numNodes
   }
 
-  private set nextId(n: number) {
-    this._nextId = n
+  private set numNodes(n: number) {
+    this._numNodes = n
   }
 
   private get nodeMap(): Map<number, StoryNode> {
     return this._nodeMap
+  }
+
+  public get endings() {
+    return this._endings
+  }
+
+  private set endings(n: number) {
+    this._endings = n
   }
 }
 
