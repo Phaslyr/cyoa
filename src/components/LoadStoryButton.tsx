@@ -7,7 +7,7 @@ const THEME = DEFAULT // Here to instantiate the THEME variable, which will prob
 function LoadStoryButton({ story, loadStory }: { story: StoryGraph, loadStory: (storyData: StoryGraph) => void }) {
   return (
     <button 
-      className={`container h-1/6 w-full rounded-2xl! ${BUTTON_COLORS[THEME.buttonPrimary]} shadow-[0_0_5px_1px]/25 hover:inset-shadow-[0_0_15px_3px]/40 active:inset-shadow-[0_0_20px_4px]/60 shadow-black active:inset-shadow-black`}
+      className={`container h-20 w-full rounded-2xl! ${BUTTON_COLORS[THEME.buttonPrimary]} shadow-[0_0_5px_1px]/25 hover:inset-shadow-[0_0_15px_3px]/40 active:inset-shadow-[0_0_20px_4px]/60 shadow-black active:inset-shadow-black`}
       onClick={() => { loadStory(story) }} >
         <div className="row h-full">
           <span className="col-6 pt-2 self-center justify-self-start text-start text-white lg:text-6xl md:text-5xl text-4xl text-shadow-sm/15 font-bold tangerine">
